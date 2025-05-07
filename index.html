@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Pagamento MBS Technology</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main>
+    <h1>Pagamento MBS Technology</h1>
+    <p>Preencha seus dados e envie o comprovante de pagamento Pix para liberar o acesso.</p>
+
+    <form id="pagamentoForm" enctype="multipart/form-data" method="POST" action="https://formsubmit.co/SEU_EMAIL">
+      <label for="nome">Nome:</label>
+      <input type="text" name="nome" id="nome" required>
+
+      <label for="email">E-mail:</label>
+      <input type="email" name="email" id="email" required>
+
+      <label for="comprovante">Comprovante de pagamento (PDF ou imagem):</label>
+      <input type="file" name="attachment" accept=".pdf, .jpg, .jpeg, .png" required>
+
+      <!-- Código para futura automação -->
+      <input type="hidden" name="_subject" value="Novo pagamento MBS Technology">
+      <input type="hidden" name="_captcha" value="false">
+      <input type="hidden" name="_template" value="box">
+      <input type="hidden" name="_next" value="obrigado.html">
+
+      <button type="submit">Enviar Comprovante</button>
+    </form>
+  </main>
+</body>
+</html>
