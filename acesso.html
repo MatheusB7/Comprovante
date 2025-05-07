@@ -3,51 +3,86 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Proteção com Senha</title>
+  <title>Acesso Protegido</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f4;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+    .container {
+      background-color: #fff;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      text-align: center;
+      max-width: 400px;
+      width: 100%;
+    }
+    input {
+      padding: 10px;
+      width: 80%;
+      margin: 10px 0;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+    }
+    button {
+      padding: 10px 15px;
+      background-color: #007b5e;
+      border: none;
+      color: white;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #006249;
+    }
+  </style>
 </head>
 <body>
-  <h2>Digite a senha para acessar o conteúdo:</h2>
-  <input type="password" id="senha" placeholder="Digite a senha">
-  <button onclick="verificarSenha()">Entrar</button>
 
-  <div id="conteudo" style="display:none;">
-    <!-- Aqui entra o conteúdo verdadeiro -->
-    <h1>Conteúdo Protegido</h1>
-    <p>Bem-vindo! O conteúdo está liberado!</p>
+  <div class="container">
+    <h2>Acesso Protegido</h2>
+    <p>Digite a senha para acessar o conteúdo:</p>
+    
+    <input type="password" id="senha" placeholder="Digite a senha">
+    <button onclick="verificarSenha()">Entrar</button>
+
+    <div id="conteudo" style="display:none;">
+      <h3>Conteúdo Protegido</h3>
+      <p>Aqui está o conteúdo que você queria acessar!</p>
+    </div>
   </div>
 
   <script>
     function gerarSenha() {
-      // Obtém o mês e ano atuais
-      const mes = new Date().toLocaleString('pt-BR', { month: 'long' });
-      const ano = new Date().getFullYear();
+      const meses = ["janeiro", "fevereiro", "março", "abril", "maio", "junho", "julho", "agosto", "setembro", "outubro", "novembro", "dezembro"];
+      const data = new Date();
+      const mesNome = meses[data.getMonth()]; // Nome do mês
+      const mesNumero = String(data.getMonth() + 1).padStart(2, '0'); // Número do mês
+      const ano = data.getFullYear(); // Ano
+      const mesHex = (data.getMonth() + 1).toString(16); // Mês em hexadecimal
+      const anoHex = ano.toString(16); // Ano em hexadecimal
 
-      // Gera um código aleatório de 6 caracteres
-      const codigoAleatorio = Math.random().toString(36).substring(2, 8); // Gera 6 caracteres aleatórios
-
-      // Cria a senha formatada
-      return mes + ano + "_" + codigoAleatorio;
+      return `${mesNome}_${mesNumero}_${ano}_${mesHex}_${anoHex}`;
     }
 
     function verificarSenha() {
-      // Obtém a senha digitada
       const senha = document.getElementById("senha").value;
+      const senhaCorreta = gerarSenha(); // Gera a senha de acordo com o mês e ano atual
 
-      // Obtém a senha correta gerada
-      const senhaCorreta = gerarSenha();
-
-      // Verifica se a senha digitada é igual à gerada
       if (senha === senhaCorreta) {
-        // Exibe o conteúdo protegido se a senha estiver correta
         document.getElementById("conteudo").style.display = "block";
+        alert("Acesso permitido!");
       } else {
-        // Exibe um alerta se a senha estiver incorreta
-        alert("Senha incorreta! Tente novamente.");
+        alert("Senha incorreta!");
       }
     }
-
-    // Exibe a senha gerada no console para testes (opcional)
-    console.log("Senha deste mês:", gerarSenha());
   </script>
+
 </body>
 </html>
