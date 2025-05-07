@@ -11,7 +11,16 @@
     <h1>Pagamento MBS Technology</h1>
     <p>Preencha seus dados e envie o comprovante de pagamento Pix para liberar o acesso.</p>
 
-    <form id="pagamentoForm" enctype="multipart/form-data" method="POST" action="https://formsubmit.co/matheusbarilva@gmail.com">
+    <div style="text-align: center; margin: 20px 0;">
+      <h2>📲 Pagamento via Pix</h2>
+      <p>Escaneie o QR Code abaixo ou clique no link:</p>
+      <a href="https://nubank.com.br/cobrar/193e5i/681ad3c4-1937-4da2-b4df-58feee9effec" target="_blank">
+        https://nubank.com.br/cobrar/193e5i/681ad3c4-1937-4da2-b4df-58feee9effec
+      </a><br><br>
+      <img src="https://api.qrserver.com/v1/create-qr-code/?data=https://nubank.com.br/cobrar/193e5i/681ad3c4-1937-4da2-b4df-58feee9effec&size=200x200" alt="QR Code Pix Nubank">
+    </div>
+
+    <form id="pagamentoForm" enctype="multipart/form-data" method="POST" action="https://formsubmit.co/mbstechnologysite@gmail.com">
       <label for="nome">Nome:</label>
       <input type="text" name="nome" id="nome" required>
 
@@ -21,7 +30,7 @@
       <label for="comprovante">Comprovante de pagamento (PDF ou imagem):</label>
       <input type="file" name="attachment" accept=".pdf, .jpg, .jpeg, .png" required>
 
-      <!-- Código para futura automação -->
+      <!-- Automação FormSubmit -->
       <input type="hidden" name="_subject" value="Novo pagamento MBS Technology">
       <input type="hidden" name="_captcha" value="false">
       <input type="hidden" name="_template" value="box">
