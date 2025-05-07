@@ -3,69 +3,34 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Proteção de Acesso</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      background-color: #f0f0f0;
-      text-align: center;
-      padding: 50px;
-    }
-    #conteudo {
-      display: none;
-      background-color: #fff;
-      padding: 20px;
-      border-radius: 10px;
-      box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
-    }
-    input, button {
-      padding: 10px;
-      margin-top: 20px;
-      font-size: 16px;
-      border-radius: 5px;
-      border: 1px solid #ccc;
-    }
-    button {
-      background-color: #007b5e;
-      color: white;
-      cursor: pointer;
-    }
-    button:hover {
-      background-color: #005f44;
-    }
-  </style>
+  <title>Proteção com Senha</title>
 </head>
 <body>
-  <h1>Área de Acesso Protegido</h1>
-  <p>Digite a senha para acessar o conteúdo exclusivo:</p>
-  
-  <input type="password" id="senha" placeholder="Digite a senha" />
+  <input type="password" id="senha" placeholder="Digite a senha">
   <button onclick="verificarSenha()">Entrar</button>
-  
-  <div id="conteudo">
-    <h2>Conteúdo Exclusivo</h2>
-    <p>Você tem acesso ao conteúdo exclusivo. Aproveite!</p>
+
+  <div id="conteudo" style="display:none;">
+    <!-- Aqui entra o conteúdo verdadeiro -->
+    <h1>Conteúdo Protegido</h1>
+    <p>Bem-vindo, o conteúdo está liberado!</p>
   </div>
 
   <script>
-    // Função para gerar a senha
-    function gerarSenha(nomeUsuario) {
-      const mes = new Date().toLocaleString('default', { month: 'long' }).toLowerCase(); // Obtém o mês em letras minúsculas
-      const ano = new Date().getFullYear(); // Ano atual
-      const caracteresAleatorios = Math.random().toString(36).substring(2, 6); // Gera 4 caracteres aleatórios
-      return nomeUsuario + "_" + mes + ano + "@" + caracteresAleatorios;
+    function gerarSenha() {
+      const mes = new Date().toLocaleString('pt-BR', { month: 'long' });
+      const ano = new Date().getFullYear();
+      const codigoAleatorio = Math.random().toString(36).substring(2, 8); // Gera 6 caracteres aleatórios
+      return mes + ano + "_" + codigoAleatorio;
     }
 
-    // Função para verificar a senha
     function verificarSenha() {
-      const nomeUsuario = "joao"; // Defina o nome do usuário aqui ou recupere dinamicamente
-      const senhaEsperada = gerarSenha(nomeUsuario); // Gera a senha baseada no nome do usuário, mês e ano
-      const senhaDigitada = document.getElementById("senha").value; // Obtém a senha digitada
+      const senha = document.getElementById("senha").value;
+      const senhaCorreta = gerarSenha();
 
-      if (senhaDigitada === senhaEsperada) {
-        document.getElementById("conteudo").style.display = "block"; // Mostra o conteúdo se a senha estiver correta
+      if (senha === senhaCorreta) {
+        document.getElementById("conteudo").style.display = "block";
       } else {
-        alert("Senha incorreta. Tente novamente!"); // Mensagem de erro se a senha for incorreta
+        alert("Senha incorreta!");
       }
     }
   </script>
