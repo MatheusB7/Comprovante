@@ -1,88 +1,97 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Acesso Protegido</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Acesso - MBS Technology</title>
   <style>
     body {
       font-family: Arial, sans-serif;
       background-color: #f4f4f4;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
       margin: 0;
+      padding: 0;
     }
     .container {
-      background-color: #fff;
-      padding: 20px;
-      border-radius: 10px;
-      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-      text-align: center;
-      max-width: 400px;
       width: 100%;
+      max-width: 400px;
+      margin: 100px auto;
+      background-color: white;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     }
-    input {
+    h1 {
+      text-align: center;
+      color: #333;
+    }
+    label {
+      font-size: 16px;
+      margin-bottom: 5px;
+      display: block;
+    }
+    input[type="password"] {
+      width: 100%;
       padding: 10px;
-      width: 80%;
-      margin: 10px 0;
+      margin-bottom: 20px;
       border-radius: 5px;
       border: 1px solid #ccc;
+      font-size: 16px;
     }
     button {
-      padding: 10px 15px;
-      background-color: #007b5e;
-      border: none;
+      width: 100%;
+      padding: 10px;
+      background-color: #4CAF50;
       color: white;
+      border: none;
       border-radius: 5px;
+      font-size: 16px;
       cursor: pointer;
     }
     button:hover {
-      background-color: #006249;
+      background-color: #45a049;
+    }
+    #conteudo {
+      display: none;
+      margin-top: 20px;
+      text-align: center;
     }
   </style>
 </head>
 <body>
-
   <div class="container">
-    <h2>Acesso Protegido</h2>
-    <p>Digite a senha para acessar o conteúdo:</p>
-    
-    <input type="password" id="senha" placeholder="Digite a senha">
+    <h1>Acesso Restrito</h1>
+    <label for="senha">Digite a senha:</label>
+    <input type="password" id="senha" placeholder="Digite a senha" required>
     <button onclick="verificarSenha()">Entrar</button>
 
-    <div id="conteudo" style="display:none;">
-      <h3>Conteúdo Protegido</h3>
-      <p>Aqui está o conteúdo que você queria acessar!</p>
+    <div id="conteudo">
+      <h2>Bem-vindo ao conteúdo restrito!</h2>
+      <p>Aqui está o conteúdo secreto que você só pode acessar com a senha correta.</p>
+      <!-- Seu conteúdo protegido vai aqui -->
     </div>
   </div>
 
   <script>
-    function gerarSenha() {
-      const meses = ["janeiro", "fevereiro", "março", "abril", "maio", "junho", "julho", "agosto", "setembro", "outubro", "novembro", "dezembro"];
-      const data = new Date();
-      const mesNome = meses[data.getMonth()]; // Nome do mês
-      const mesNumero = String(data.getMonth() + 1).padStart(2, '0'); // Número do mês
-      const ano = data.getFullYear(); // Ano
-      const mesHex = (data.getMonth() + 1).toString(16); // Mês em hexadecimal
-      const anoHex = ano.toString(16); // Ano em hexadecimal
-
-      return `${mesNome}_${mesNumero}_${ano}_${mesHex}_${anoHex}`;
-    }
-
     function verificarSenha() {
       const senha = document.getElementById("senha").value;
-      const senhaCorreta = gerarSenha(); // Gera a senha de acordo com o mês e ano atual
+      
+      // Defina a senha com a estrutura desejada
+      const mesNome = new Date().toLocaleString('pt-BR', { month: 'long' }).toLowerCase(); // Nome do mês
+      const mesNumero = ('0' + (new Date().getMonth() + 1)).slice(-2); // Número do mês
+      const ano = new Date().getFullYear(); // Ano
+      const mesHex = (new Date().getMonth() + 1).toString(16); // Mês em hexadecimal
+      const anoHex = ano.toString(16); // Ano em hexadecimal
 
+      // Monta a senha
+      const senhaCorreta = `${mesNome}_${mesNumero}_${ano}_${mesHex}_${anoHex}`;
+
+      // Verifica a senha
       if (senha === senhaCorreta) {
-        document.getElementById("conteudo").style.display = "block";
-        alert("Acesso permitido!");
+        document.getElementById("conteudo").style.display = "block"; // Exibe o conteúdo
       } else {
-        alert("Senha incorreta!");
+        alert("Senha incorreta! Tente novamente.");
       }
     }
   </script>
-
 </body>
 </html>
