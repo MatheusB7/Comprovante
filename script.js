@@ -14,7 +14,7 @@ function gerarComprovante() {
     const total = (quantidade * valor).toFixed(2);
     const data = new Date().toLocaleString();
   
-    const conteudo = `
+    const conteudo = 
   MBS Technology - Comprovante de Venda
   
   Cliente: ${cliente}
@@ -29,7 +29,7 @@ function gerarComprovante() {
 
   Documento Não Válido Como
   Comprovante Fiscal
-    `;
+    ;
   
     document.getElementById("info").innerText = conteudo.trim();
     document.getElementById("comprovante").style.display = "block";
@@ -47,8 +47,8 @@ function gerarComprovante() {
   
     const cliente = document.getElementById("cliente").value || "cliente";
     const data = new Date();
-    const dataStr = `${data.getDate()}-${data.getMonth() + 1}-${data.getFullYear()}_${data.getHours()}h${data.getMinutes()}`;
-    const nomeArquivo = `${cliente}_${dataStr}.pdf`;
+    const dataStr = ${data.getDate()}-${data.getMonth() + 1}-${data.getFullYear()}_${data.getHours()}h${data.getMinutes()};
+    const nomeArquivo = ${cliente}_${dataStr}.pdf;
   
     doc.setFont("courier");
     doc.setFontSize(12);
@@ -68,7 +68,7 @@ function gerarComprovante() {
     }
   
     const mensagem = encodeURIComponent(texto);
-    const url = `https://wa.me/?text=${mensagem}`;
+    const url = https://wa.me/?text=${mensagem};
     window.open(url, "_blank");
   }
   
@@ -81,7 +81,6 @@ function gerarComprovante() {
   
     const assunto = encodeURIComponent("Comprovante de Venda - MBS Technology");
     const corpo = encodeURIComponent(texto);
-    const url = `mailto:?subject=${assunto}&body=${corpo}`;
+    const url = mailto:?subject=${assunto}&body=${corpo};
     window.open(url);
   }
-  
