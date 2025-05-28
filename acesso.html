@@ -4,20 +4,6 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Acesso Protegido</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      text-align: center;
-      margin-top: 50px;
-    }
-    input, button {
-      padding: 10px;
-      font-size: 16px;
-    }
-    #conteudo {
-      margin-top: 30px;
-    }
-  </style>
 </head>
 <body>
   <h1>Área Restrita</h1>
@@ -27,9 +13,8 @@
   <button onclick="verificarSenha()">Entrar</button>
 
   <div id="conteudo" style="display:none;">
-    <h2>Conteúdo Protegido</h2>
-    <p>Bem-vindo à área protegida do site!</p>
-    <a href="produto.html">➡️ Acessar próximo conteúdo</a>
+    <h2>Bem-vindo à área protegida do site!</h2>
+    <a href="produto.html">Acessar Comprovante</a>
   </div>
 
   <script>
@@ -47,15 +32,17 @@
       const hexMes = numeroMes.toString(16).toUpperCase();
       const hexAno = ano.toString(16).toUpperCase();
 
-      const senhaGerada = `${mes}_${numeroMes < 10 ? '0' + numeroMes : numeroMes}_${ano}_${hexMes}_${hexAno}`;
-      return senhaGerada;
+      return `${mes}_${numeroMes < 10 ? '0' + numeroMes : numeroMes}_${ano}_${hexMes}_${hexAno}`;
     }
 
     function verificarSenha() {
-      const senhaDigitada = document.getElementById("senha").value.trim();
+      const senhaDigitada = document.getElementById("senha").value;
       const senhaCorreta = gerarSenha();
 
       if (senhaDigitada === senhaCorreta) {
+        // Salva o horário de acesso no localStorage
+        localStorage.setItem("dataAcesso", new Date().toISOString());
+
         document.getElementById("conteudo").style.display = "block";
       } else {
         alert("Senha incorreta! Tente novamente.");
