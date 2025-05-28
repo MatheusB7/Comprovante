@@ -4,18 +4,35 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Acesso Protegido</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <h1>Área Restrita</h1>
-  <p>Digite a senha para acessar o conteúdo:</p>
 
-  <input type="password" id="senha" placeholder="Digite a senha">
-  <button onclick="verificarSenha()">Entrar</button>
+  <header>
+    <h1>Área Restrita</h1>
+  </header>
 
-  <div id="conteudo" style="display:none;">
-    <h2>Bem-vindo à área protegida do site!</h2>
-    <a href="produto.html">Acessar Comprovante</a>
-  </div>
+  <main>
+    <p>Digite a senha para acessar o conteúdo:</p>
+
+    <form id="form-senha" onsubmit="event.preventDefault(); verificarSenha();">
+      <label for="senha">Senha:</label>
+      <input type="password" id="senha" placeholder="Digite a senha" aria-label="Senha de acesso" required />
+      
+      <div class="botoes">
+        <button type="submit">Entrar</button>
+      </div>
+    </form>
+
+    <section id="conteudo" class="comprovante-box" style="display:none;">
+      <h2>Bem-vindo à área protegida do site!</h2>
+      <a href="produto.html" class="btn-comprovante">Acessar Comprovante</a>
+    </section>
+  </main>
+
+  <footer>
+    &copy; 2025 Sua Empresa. Todos os direitos reservados.
+  </footer>
 
   <script>
     function gerarSenha() {
@@ -36,14 +53,14 @@
     }
 
     function verificarSenha() {
-      const senhaDigitada = document.getElementById("senha").value;
+      const senhaDigitada = document.getElementById("senha").value.trim();
       const senhaCorreta = gerarSenha();
 
       if (senhaDigitada === senhaCorreta) {
-        // Salva o horário de acesso no localStorage
         localStorage.setItem("dataAcesso", new Date().toISOString());
-
         document.getElementById("conteudo").style.display = "block";
+        // Opcional: esconder o formulário após sucesso
+        document.getElementById("form-senha").style.display = "none";
       } else {
         alert("Senha incorreta! Tente novamente.");
       }
