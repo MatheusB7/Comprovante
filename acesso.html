@@ -2,52 +2,66 @@
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Acesso Protegido</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Acesso ao Conteúdo</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f8f9fa;
+      text-align: center;
+      padding: 50px;
+    }
+    #conteudo {
+      display: none;
+      margin-top: 30px;
+      background-color: #fff;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+    input, button {
+      padding: 10px;
+      margin-top: 15px;
+      font-size: 16px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+    }
+    button {
+      background-color: #007bff;
+      color: white;
+    }
+    button:hover {
+      background-color: #0056b3;
+    }
+  </style>
 </head>
 <body>
-  <h1>Área Restrita</h1>
-  <p>Digite a senha para acessar o conteúdo:</p>
+  <h1>Área Protegida</h1>
+  <p>Digite seu nome e a senha recebida no e-mail:</p>
 
-  <input type="password" id="senha" placeholder="Digite a senha">
+  <input type="text" id="nomeUsuario" placeholder="Seu nome completo" />
+  <input type="password" id="senhaDigitada" placeholder="Senha recebida" />
   <button onclick="verificarSenha()">Entrar</button>
 
-  <div id="conteudo" style="display:none;">
-    <h2>Conteúdo Protegido</h2>
-    <p>Bem-vindo à área protegida do site!</p>
+  <div id="conteudo">
+    <h2>Bem-vindo!</h2>
+    <p>Você acessou o conteúdo exclusivo com sucesso.</p>
   </div>
 
   <script>
-    // Função para gerar a senha automaticamente
-    function gerarSenha() {
-      const meses = [
-        "janeiro", "fevereiro", "março", "abril", "maio", "junho",
-        "julho", "agosto", "setembro", "outubro", "novembro", "dezembro"
-      ];
-
-      const data = new Date();
-      const mes = meses[data.getMonth()];  // Nome do mês
-      const numeroMes = data.getMonth() + 1;  // Número do mês (1-12)
-      const ano = data.getFullYear();  // Ano atual
-
-      // Convertendo o número do mês e o ano para hexadecimal
-      const hexMes = numeroMes.toString(16).toUpperCase();  // Hexadecimal do mês
-      const hexAno = ano.toString(16).toUpperCase();  // Hexadecimal do ano
-
-      // Gerando a senha final
-      const senhaGerada = `${mes}_${numeroMes < 10 ? '0' + numeroMes : numeroMes}_${ano}_${hexMes}_${hexAno}`;
-      return senhaGerada;
-    }
-
-    // Função para verificar a senha
     function verificarSenha() {
-      const senha = document.getElementById("senha").value;
-      const senhaCorreta = gerarSenha();  // Senha gerada automaticamente
+      const nome = document.getElementById("nomeUsuario").value.trim().toLowerCase().replace(/\s+/g, '');
+      const senha = document.getElementById("senhaDigitada").value;
+      const mes = new Date().toLocaleString('default', { month: 'long' }).toLowerCase();
+      const ano = new Date().getFullYear();
 
-      if (senha === senhaCorreta) {
+      // Gera o prefixo da senha esperada
+      const prefixoEsperado = `${nome}_${mes}${ano}@`;
+
+      if (senha.startsWith(prefixoEsperado)) {
         document.getElementById("conteudo").style.display = "block";
       } else {
-        alert("Senha incorreta! Tente novamente.");
+        alert("Senha incorreta. Verifique seu nome e a senha recebida.");
       }
     }
   </script>
