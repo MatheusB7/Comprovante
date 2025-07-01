@@ -3,53 +3,64 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Acesso Protegido</title>
+  <title>Acesso Protegido - MBS Technology</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-
   <header>
-    <h1>Área Restrita</h1>
+    <h1>🔒 Acesso Restrito</h1>
+    <p>Área protegida da <strong>MBS Technology</strong></p>
   </header>
 
   <main>
-    <p>Digite a senha para acessar o conteúdo:</p>
+    <div class="logo-container">
+      <img src="Logo.png" alt="Logo da MBS Technology" class="logo" />
+    </div>
 
-    <form id="form-senha" onsubmit="event.preventDefault(); verificarSenha();">
-      <label for="senha">Senha:</label>
-      <input type="password" id="senha" placeholder="Digite a senha" aria-label="Senha de acesso" required />
-      
+    <form onsubmit="event.preventDefault(); verificarSenha();">
+      <label for="senha">Digite a senha de acesso:</label>
+      <input type="password" id="senha" placeholder="Ex: MBS-Junho-06-2025-18-2B88-7E9" required />
+
       <div class="botoes">
         <button type="submit">Entrar</button>
       </div>
     </form>
 
-    <section id="conteudo" class="comprovante-box" style="display:none;">
-      <h2>Bem-vindo à área protegida do site!</h2>
-      <a href="produto.html" class="btn-comprovante">Acessar Comprovante</a>
-    </section>
+    <div id="conteudo" class="comprovante-box" style="display:none;">
+      <h2>✅ Conteúdo Liberado</h2>
+      <p>Bem-vindo à área protegida da plataforma!</p>
+      <a href="produto.html">➡️ Acessar produtos</a>
+    </div>
   </main>
 
   <footer>
-    &copy; 2025 Sua Empresa. Todos os direitos reservados.
+    &copy; 2025 MBS Technology. Todos os direitos reservados.
   </footer>
 
   <script>
     function gerarSenha() {
       const meses = [
-        "janeiro", "fevereiro", "março", "abril", "maio", "junho",
-        "julho", "agosto", "setembro", "outubro", "novembro", "dezembro"
+        "Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho",
+        "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro"
       ];
 
       const data = new Date();
-      const mes = meses[data.getMonth()];
       const numeroMes = data.getMonth() + 1;
+      const nomeMes = meses[data.getMonth()];
       const ano = data.getFullYear();
 
-      const hexMes = numeroMes.toString(16).toUpperCase();
+      const multiplicador = numeroMes * 3;
+      const baseStr = `${numeroMes < 10 ? '0' + numeroMes : numeroMes}${ano}`;
+      const base = parseInt(baseStr);
+      const resultado = base * multiplicador;
+
+      const resultadoStr = resultado.toString();
+      const removido = resultadoStr.slice(0, 4) + resultadoStr.slice(6); // Remove 5º e 6º dígitos
+      const numeroFinal = parseInt(removido);
+      const hexFinal = numeroFinal.toString(16).toUpperCase();
       const hexAno = ano.toString(16).toUpperCase();
 
-      return `${mes}_${numeroMes < 10 ? '0' + numeroMes : numeroMes}_${ano}_${hexMes}_${hexAno}`;
+      return `MBS-${nomeMes}-${numeroMes < 10 ? '0' + numeroMes : numeroMes}-${ano}-${multiplicador}-${hexFinal}-${hexAno}`;
     }
 
     function verificarSenha() {
@@ -57,12 +68,9 @@
       const senhaCorreta = gerarSenha();
 
       if (senhaDigitada === senhaCorreta) {
-        localStorage.setItem("dataAcesso", new Date().toISOString());
         document.getElementById("conteudo").style.display = "block";
-        // Opcional: esconder o formulário após sucesso
-        document.getElementById("form-senha").style.display = "none";
       } else {
-        alert("Senha incorreta! Tente novamente.");
+        alert("❌ Senha incorreta! Verifique e tente novamente.");
       }
     }
   </script>
