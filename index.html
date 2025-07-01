@@ -3,40 +3,63 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Pagamento MBS Technology</title>
-  <link rel="stylesheet" href="style.css" />
+  <title>Comprovante (Não Fiscal) - MBS Technology</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="icon" href="imagem/LogoComprovanteSimples.png" type="image/png"/>
 </head>
 <body>
   <main>
-    <h1>Pagamento MBS Technology</h1>
-    <p>Preencha seus dados e envie o comprovante de pagamento Pix para liberar o acesso.</p>
-
-    <div style="text-align: center; margin: 20px 0;">
-      <h2>📲 Pagamento via Pix</h2>
-      <p>Escaneie o QR Code abaixo ou clique no link:</p>
-      <a href="https://nubank.com.br/cobrar/193e5i/681ad3c4-1937-4da2-b4df-58feee9effec" target="_blank" rel="noopener noreferrer">
-        https://nubank.com.br/cobrar/193e5i/681ad3c4-1937-4da2-b4df-58feee9effec
-      </a><br><br>
-      <img src="https://api.qrserver.com/v1/create-qr-code/?data=https://nubank.com.br/cobrar/193e5i/681ad3c4-1937-4da2-b4df-58feee9effec&size=200x200" alt="QR Code Pix Nubank" />
+    <div class="logo-container" style="text-align: center; margin-bottom: 20px;">
+      <img src="Logo.png" alt="Logo MBS Technology" class="logo" style="max-width: 180px;">
     </div>
 
+    <h1>Comprovante (Não Fiscal) - MBS Technology</h1>
+    <section style="margin-bottom: 30px;">
+      <p>
+        Este sistema foi desenvolvido para gerar comprovantes de vendas simples (não fiscais) de forma rápida e prática. Ideal para vendedores autônomos, prestadores de serviço ou pequenas empresas que precisam registrar suas vendas com clareza e organização.
+      </p>
+      <p>
+        Com o sistema, você poderá:
+        <ul>
+          <li>Preencher dados como cliente, item vendido, quantidade e valor;</li>
+          <li>Gerar um comprovante profissional em PDF;</li>
+          <li>Enviar o comprovante diretamente por WhatsApp ou e-mail.</li>
+        </ul>
+        É uma ferramenta simples, intuitiva e que funciona totalmente <strong>offline</strong> no navegador!
+      </p>
+    </section>
+
+    <h2>Pagamento MBS Technology</h2>
+    <p>
+      Para liberar o acesso ao sistema, é necessário realizar um pagamento único no valor de <strong>R$ 4,99</strong>.
+    </p>
+    <p>Preencha seus dados e envie o comprovante de pagamento Pix utilizando o formulário abaixo.</p>
+
     <form id="pagamentoForm" enctype="multipart/form-data" method="POST" action="https://formsubmit.co/mbstechnologysite@gmail.com">
-      <label for="nome">Nome:</label><br />
-      <input type="text" name="nome" id="nome" required /><br />
+      <div style="text-align: center; margin: 20px 0;">
+        <h2>📲 Pagamento via Pix</h2>
+        <p>Escaneie o QR Code abaixo ou clique no link:</p>
+        <a href="https://nubank.com.br/cobrar/193e5i/681ad3c4-1937-4da2-b4df-58feee9effec" target="_blank">
+          https://nubank.com.br/cobrar/193e5i/681ad3c4-1937-4da2-b4df-58feee9effec
+        </a><br><br>
+        <img src="https://api.qrserver.com/v1/create-qr-code/?data=https://nubank.com.br/cobrar/193e5i/681ad3c4-1937-4da2-b4df-58feee9effec&size=200x200" alt="QR Code Pix Nubank">
+      </div>
 
-      <label for="email">E-mail:</label><br />
-      <input type="email" name="email" id="email" required /><br />
+      <label for="nome">Nome:</label>
+      <input type="text" name="nome" id="nome" required>
 
-      <label for="comprovante">Comprovante de pagamento (PDF ou imagem):</label><br />
-      <input type="file" name="attachment" accept=".pdf, .jpg, .jpeg, .png" required /><br />
+      <label for="email">E-mail:</label>
+      <input type="email" name="email" id="email" required>
 
-      <!-- Configurações FormSubmit -->
-      <input type="hidden" name="_subject" value="Novo pagamento MBS Technology" />
-      <input type="hidden" name="_captcha" value="false" />
-      <input type="hidden" name="_template" value="box" />
-      <input type="hidden" name="_next" value="https://matheusb7.github.io/Comprovante/obrigado.html" />
+      <label for="comprovante">Comprovante de pagamento (PDF ou imagem):</label>
+      <input type="file" name="attachment" accept=".pdf, .jpg, .jpeg, .png" required>
 
-      <button type="submit" style="margin-top: 10px;">Enviar Comprovante</button>
+      <input type="hidden" name="_subject" value="Novo pagamento MBS Technology">
+      <input type="hidden" name="_captcha" value="false">
+      <input type="hidden" name="_template" value="box">
+      <input type="hidden" name="_next" value="obrigado.html">
+
+      <button type="submit">Enviar Comprovante</button>
     </form>
   </main>
 </body>
