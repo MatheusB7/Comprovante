@@ -82,11 +82,18 @@ button:hover {
 }
 
 footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
   text-align: center;
   padding: 15px;
   background: #eee;
   font-size: 14px;
-  margin-top: 40px;
+  /* Remova margin-top porque o footer é fixo */
+  margin-top: 0;
+  box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
 }
 
 .logo-container {
@@ -97,6 +104,6 @@ footer {
 }
 
 .logo {
-  width: 140px;
+  width: 160px;
   height: auto;
 }
