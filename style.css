@@ -1,5 +1,5 @@
 :root {
-  --cor-primaria: #004080;
+  --cor-primaria: #143455;
   --cor-secundaria: #f4f4f4;
   --cor-texto: #222;
   --cor-botao: #007b5e;
@@ -106,4 +106,20 @@ footer {
 .logo {
   width: 160px;
   height: auto;
+}
+
+.logo-fixa {
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  z-index: 1000;
+}
+
+.logo-fixa .logo {
+  width: 120px;
+  height: auto;
+  image-rendering: auto;       /* deixa o navegador otimizar a nitidez */
+  image-rendering: crisp-edges; /* melhora em PNGs com contraste */
+  image-rendering: -webkit-optimize-contrast; /* Safari/Chrome */
+  border-radius: 12px; /* opcional: borda arredondada */
 }
