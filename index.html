@@ -9,8 +9,8 @@
 </head>
 <body>
   <main>
-    <div class="logo-container" style="text-align: center; margin-bottom: 20px;">
-      <img src="Logo.png" alt="Logo MBS Technology" class="logo" style="max-width: 180px;">
+    <div class="logo-container" style="text-align: center; margin-bottom: 20px; margin-top: 20px;">
+      <img src="imagem/MBSTechnologyLogo.png" alt="Logo MBS Technology" class="logo" style="max-width: 180px; border-radius: 12px;">
     </div>
 
     <h1>Comprovante (Não Fiscal) - MBS Technology</h1>
@@ -29,11 +29,15 @@
       </p>
     </section>
 
+    <!-- LOGO ANTES DO TÍTULO DO PAGAMENTO -->
+    <div class="logo-container" style="text-align: center; margin: 30px 0 10px;">
+      <img src="LogoComprovanteSimples.png" alt="Logo da MBS Technology" class="logo" style="width: 120px; border-radius: 50%;">
+    </div>
+
     <h2>Pagamento MBS Technology</h2>
     <p>
       Para liberar o acesso ao sistema, é necessário realizar um pagamento único no valor de <strong>R$ 4,99</strong>.
     </p>
-    <p>Preencha seus dados e envie o comprovante de pagamento Pix utilizando o formulário abaixo.</p>
 
     <form id="pagamentoForm" enctype="multipart/form-data" method="POST" action="https://formsubmit.co/mbstechnologysite@gmail.com">
       <div style="text-align: center; margin: 20px 0;">
@@ -44,6 +48,8 @@
         </a><br><br>
         <img src="https://api.qrserver.com/v1/create-qr-code/?data=https://nubank.com.br/cobrar/193e5i/681ad3c4-1937-4da2-b4df-58feee9effec&size=200x200" alt="QR Code Pix Nubank">
       </div>
+
+      <p>Preencha seus dados e envie o comprovante de pagamento Pix utilizando o formulário abaixo.</p>
 
       <label for="nome">Nome:</label>
       <input type="text" name="nome" id="nome" required>
@@ -58,6 +64,11 @@
       <input type="hidden" name="_captcha" value="false">
       <input type="hidden" name="_template" value="box">
       <input type="hidden" name="_next" value="obrigado.html">
+
+      <h3>⭐ Aviso Importante:</h3>
+        <p>
+          ⏳ Após o envio em no máximo 24 horas, você receberá um e-mail (Coloque um e-mail válido e que você utiliza) com o código de ativação do Modo Premium.
+        </p>
 
       <button type="submit">Enviar Comprovante</button>
     </form>
